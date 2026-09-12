@@ -1,0 +1,539 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const siteName = 'うる訪問看護ステーション｜ルルソア相談室';
+const siteDescription =
+  '在宅で介護をしている方（岬町・阪南市・泉南市エリア）へ、訪問看護・ケアプランセンターのサービスをご案内する公式サイトです。（デザイン比較用：パターンC）';
+
+const navLinks = [
+  { href: '#about', label: '私たちについて' },
+  { href: '#services', label: 'サービス' },
+  { href: '#guide', label: 'ご利用の流れ' },
+  { href: '#staff', label: 'スタッフ紹介' },
+  { href: '#voice', label: 'お客様の声' },
+  { href: '#recruit', label: '採用情報' },
+];
+
+const audienceTags = [
+  { label: 'ご本人・ご家族の方へ', tone: 'green' },
+  { label: '訪問看護をお考えの方へ', tone: 'sky' },
+  { label: 'ケアプランのご相談へ', tone: 'clay' },
+];
+
+const facts = [
+  { label: '設立', value: '令和3年4月〜', tone: 'green' },
+  { label: '対応エリア', value: '岬町・阪南市・泉南市', tone: 'sky' },
+  { label: '専門職体制', value: '看護・ケアマネ・リハビリの4職種', tone: 'clay' },
+];
+
+const values = [
+  '住み慣れたまちで、自分らしく',
+  '看護・ケアマネ・リハビリのチーム対応',
+  '地域に根ざした、顔の見える関係',
+];
+
+const services = [
+  {
+    title: '訪問看護ステーション',
+    who: 'ご自宅で療養中の方、ご家族での介護に不安がある方へ',
+    quote:
+      '「私達は、住み慣れた地域で安心して生活できるよう、ご利用者様、ご家族様に寄り添い、真心をこめた看護をお届けします」',
+    detail: '[ここに訪問看護サービスの詳細（対応内容・対象となる方など）を入れる]',
+    tone: 'green',
+    icon: `<path d="M4 12.5c0-3 2-5.5 4.5-5.5 1.6 0 2.8.8 3.5 2 .7-1.2 1.9-2 3.5-2 2.5 0 4.5 2.5 4.5 5.5 0 4-4.5 7-8 8.5-3.5-1.5-8-4.5-8-8.5z" />`,
+  },
+  {
+    title: 'ケアプランセンター（ルルソア相談室）',
+    sub: '居宅介護支援',
+    who: 'ケアプラン作成やケアマネジャーへのご相談をお考えの方へ',
+    quote:
+      '「人に寄り添い、心に寄り添うケアを大切にしています。穏やかな時間の中で、その人らしい笑顔や想いを見つめ、もう一度、自分らしく羽ばたける日々を支えます。」',
+    detail: '[ここにケアプランセンターサービスの詳細（ケアプラン作成・相談内容など）を入れる]',
+    tone: 'sky',
+    icon: `<rect x="4" y="4" width="16" height="16" rx="2.5" /><path d="M8 10h8M8 14h5" />`,
+  },
+];
+
+const guideSteps = [
+  {
+    number: '01',
+    tone: 'green',
+    title: 'お問合せ',
+    text: '電話・フォームからお気軽にご連絡ください。',
+    icon: `<path d="M6.6 10.2c1.1 2.2 2.9 4 5.1 5.1l1.7-1.7c.2-.2.6-.3.9-.2 1 .3 2 .5 3.1.5.6 0 1 .4 1 1V18c0 .6-.4 1-1 1C10.6 19 5 13.4 5 6.5c0-.6.4-1 1-1h3.1c.6 0 1 .4 1 1 0 1.1.2 2.1.5 3.1.1.3 0 .7-.2.9l-1.8 1.7z" />`,
+  },
+  {
+    number: '02',
+    tone: 'sky',
+    title: 'ご相談・お聞き取り',
+    text: '現在の状況やお困りごとを詳しくお伺いします。',
+    icon: `<path d="M4 5h16v10H8l-4 4V5z" />`,
+  },
+  {
+    number: '03',
+    tone: 'clay',
+    title: 'ケアプラン作成・訪問日程の調整',
+    text: 'ご本人・ご家族に合わせたケアプランを作成し、訪問日程を調整します。',
+    icon: `<rect x="6" y="3" width="12" height="18" rx="1.5" /><path d="M9 8h6M9 12h6M9 16h4" />`,
+  },
+  {
+    number: '04',
+    tone: 'green',
+    title: 'サービス開始',
+    text: '実際の訪問看護・ケアプランに基づくサービスがスタートします。',
+    icon: `<path d="M4 11l8-7 8 7" /><path d="M6 10v9h12v-9" />`,
+  },
+  {
+    number: '05',
+    tone: 'sky',
+    title: '定期的な見直し・ご相談',
+    text: '状況の変化に合わせて、ケアプランや対応内容を見直します。',
+    icon: `<path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3" /><path d="M17 4v4h-4M7 20v-4h4" />`,
+  },
+];
+
+const staffGroups = [
+  { role: '看護師', detail: '5名（常勤1・非常勤4）', tone: 'green' },
+  { role: '准看護師', detail: '1名（常勤）', tone: 'green' },
+  { role: 'ケアマネジャー', detail: '2名（常勤／主任介護支援専門員1名〈社会福祉士〉・介護支援専門員1名〈介護福祉士〉）', tone: 'sky' },
+  { role: 'リハビリ職', detail: '4名（PT常勤1・非常勤3）', tone: 'clay' },
+];
+
+// スタッフの人数分、このカードを増やしてください
+const staffMembers = [
+  { name: '[ここに名前を入れる]', role: '看護師', comment: '[ここにひとことコメントを入れる]', tone: 'green' },
+  { name: '[ここに名前を入れる]', role: 'ケアマネジャー', comment: '[ここにひとことコメントを入れる]', tone: 'sky' },
+  { name: '[ここに名前を入れる]', role: 'リハビリ職', comment: '[ここにひとことコメントを入れる]', tone: 'clay' },
+];
+
+// 実際にいただいた感想が決まったら、このカードを入れ替えてください
+const testimonials = [
+  { quote: '[ここにご家族・ご利用者様からいただいた感想を入れる]', name: '[ここにお名前・ご関係を入れる]' },
+  { quote: '[ここにご家族・ご利用者様からいただいた感想を入れる]', name: '[ここにお名前・ご関係を入れる]' },
+  { quote: '[ここにご家族・ご利用者様からいただいた感想を入れる]', name: '[ここにお名前・ご関係を入れる]' },
+];
+
+const toneClasses = {
+  green: { chip: 'bg-brand-50 text-brand-700', iconBg: 'bg-brand-50 text-brand-600', bar: 'bg-brand-400', section: 'bg-brand-50/60' },
+  sky: { chip: 'bg-sky-50 text-sky-700', iconBg: 'bg-sky-50 text-sky-600', bar: 'bg-sky-400', section: 'bg-sky-50/70' },
+  clay: { chip: 'bg-clay-50 text-clay-700', iconBg: 'bg-clay-50 text-clay-600', bar: 'bg-clay-400', section: 'bg-clay-50/60' },
+};
+---
+
+<Layout title={`${siteName}（デザイン比較：パターンC）`} description={siteDescription}>
+  <!-- 比較用ユーティリティバー -->
+  <div class="bg-gray-900 text-gray-200 text-xs sm:text-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2 flex flex-wrap items-center justify-between gap-2">
+      <span>デザイン比較ページ（案C：洗練された医療機関らしさ＋色のメリハリ）</span>
+      <div class="flex flex-wrap gap-x-4 gap-y-1">
+        <a href="/" class="underline underline-offset-2 hover:text-white transition-colors">案A（現行）</a>
+        <a href="/pattern-b" class="underline underline-offset-2 hover:text-white transition-colors">案B（UNC Health方向）</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ヘッダー -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
+      <a href="#top" class="flex items-center gap-2 min-w-0 text-lg sm:text-xl font-bold text-brand-800 shrink-0 whitespace-nowrap">
+        <img src="/images/logo-leaf.webp" alt="うる ロゴ" class="w-9 h-9 sm:w-10 sm:h-10 object-contain shrink-0" />
+        <span class="hidden sm:inline">{siteName}</span>
+        <span class="sm:hidden">うる訪問看護</span>
+      </a>
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="tel:0724841185" class="hidden md:flex items-center gap-1.5 text-brand-700 font-bold text-sm whitespace-nowrap">
+          <svg viewBox="0 0 24 24" class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6.6 10.2c1.1 2.2 2.9 4 5.1 5.1l1.7-1.7c.2-.2.6-.3.9-.2 1 .3 2 .5 3.1.5.6 0 1 .4 1 1V18c0 .6-.4 1-1 1C10.6 19 5 13.4 5 6.5c0-.6.4-1 1-1h3.1c.6 0 1 .4 1 1 0 1.1.2 2.1.5 3.1.1.3 0 .7-.2.9l-1.8 1.7z" />
+          </svg>
+          072-484-1185
+        </a>
+        <a href="#contact" class="inline-flex items-center justify-center bg-brand-600 text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-brand-700 transition-colors whitespace-nowrap">
+          お問い合わせ
+        </a>
+      </div>
+    </div>
+    <nav class="hidden lg:block border-t border-gray-100">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-center gap-8 text-base font-medium">
+        {navLinks.map((link) => (
+          <a href={link.href} class="text-gray-700 hover:text-brand-700 transition-colors whitespace-nowrap">
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- ===== HERO ===== -->
+    <section class="bg-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 grid lg:grid-cols-[0.95fr_1.05fr] gap-10 lg:gap-14 items-center">
+        <div>
+          <div class="flex flex-wrap gap-2 mb-5">
+            {audienceTags.map((tag) => (
+              <span class={`inline-block text-xs sm:text-sm font-bold px-3 py-1 rounded-full ${toneClasses[tag.tone].chip}`}>
+                {tag.label}
+              </span>
+            ))}
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-snug mb-5">
+            住み慣れたまちで、<br />
+            自分らしく暮らし続けるために。
+          </h1>
+          <p class="text-gray-600 text-base sm:text-lg leading-relaxed mb-8">
+            {siteName}は、岬町・阪南市・泉南市エリアで活動する訪問看護ステーションとケアプランセンターです。看護師・ケアマネジャー・リハビリ職のチームで、ご本人・ご家族の在宅生活を支えます。
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 mb-6">
+            <a
+              href="#contact"
+              class="inline-flex items-center justify-center gap-2 bg-brand-600 text-white font-bold text-base px-6 py-3.5 rounded-full hover:bg-brand-700 transition-colors"
+            >
+              相談・お問い合わせをする
+            </a>
+            <a
+              href="#services"
+              class="inline-flex items-center justify-center gap-2 bg-white text-brand-700 font-bold text-base px-6 py-3.5 rounded-full border border-brand-200 hover:bg-brand-50 transition-colors"
+            >
+              サービス内容を見る
+            </a>
+          </div>
+          <!-- クイック連絡導線：迷わずすぐ相談できることを示す -->
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-500">
+            <a href="tel:0724841185" class="inline-flex items-center gap-1.5 hover:text-brand-700 transition-colors">
+              <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 10.2c1.1 2.2 2.9 4 5.1 5.1l1.7-1.7c.2-.2.6-.3.9-.2 1 .3 2 .5 3.1.5.6 0 1 .4 1 1V18c0 .6-.4 1-1 1C10.6 19 5 13.4 5 6.5c0-.6.4-1 1-1h3.1c.6 0 1 .4 1 1 0 1.1.2 2.1.5 3.1.1.3 0 .7-.2.9l-1.8 1.7z" /></svg>
+              電話
+            </a>
+            <a href="#contact" class="inline-flex items-center gap-1.5 hover:text-brand-700 transition-colors">
+              <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v10H8l-4 4V5z" /></svg>
+              LINE
+            </a>
+            <a href="#contact" class="inline-flex items-center gap-1.5 hover:text-brand-700 transition-colors">
+              <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2.5" /><path d="M8 10h8M8 14h5" /></svg>
+              フォーム
+            </a>
+          </div>
+        </div>
+
+        <!-- ここにトップのメインビジュアル（スタッフと利用者様が笑顔で話している様子など、大きく人の温度が伝わる写真）を入れる -->
+        <div class="relative">
+          <div class="absolute -inset-3 bg-gradient-to-br from-brand-100/50 via-sky-100/40 to-clay-100/30 rounded-[2rem] blur-xl" aria-hidden="true"></div>
+          <div class="relative overflow-hidden rounded-2xl border border-gray-100 bg-gradient-to-br from-brand-50 to-white aspect-[4/3] flex flex-col items-center justify-center gap-3 text-brand-300 shadow-softer">
+            <svg viewBox="0 0 24 24" class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <circle cx="12" cy="12" r="3.2" />
+              <path d="M8 5l1.2-2h5.6L16 5" />
+            </svg>
+            <span class="text-sm sm:text-base font-medium text-gray-500 px-6 text-center">
+              ここにメインビジュアル（スタッフと利用者様の様子がわかる大きめの写真）を入れる
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ファクトストリップ（色分けで視覚的なリズムを作る） -->
+      <div class="mt-10 sm:mt-14 max-w-6xl mx-auto px-4 sm:px-6 pb-12 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {facts.map((fact) => (
+          <div class={`rounded-2xl px-5 py-4 ${toneClasses[fact.tone].chip}`}>
+            <p class="text-xs sm:text-sm font-semibold opacity-80 mb-1">{fact.label}</p>
+            <p class="font-bold text-base sm:text-lg text-gray-900">{fact.value}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="scroll-mt-20 bg-sky-50/70 px-4 sm:px-6 py-16 sm:py-24">
+      <div class="max-w-6xl mx-auto">
+        <div class="max-w-2xl mb-10">
+          <span class="inline-block bg-white text-brand-700 font-bold text-sm px-3 py-1 rounded-full mb-4">ABOUT</span>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">はじめまして、うるです。</h2>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-10">
+          <!-- ここに事業所の外観・スタッフが働く様子の写真を入れる -->
+          <div class="order-2 lg:order-1 relative overflow-hidden rounded-2xl border border-gray-100 bg-white aspect-[4/3] flex items-center justify-center text-gray-400 text-sm sm:text-base font-medium px-4 text-center shadow-softer">
+            ここに事業所・スタッフの写真を入れる
+          </div>
+          <div class="order-1 lg:order-2">
+            <div class="flex flex-wrap gap-2 mb-5">
+              {values.map((v) => (
+                <span class={`inline-block text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-full ${toneClasses[v === values[0] ? 'green' : v === values[1] ? 'sky' : 'clay'].chip}`}>
+                  {v}
+                </span>
+              ))}
+            </div>
+            <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-4">
+              Ulu.co.ltd株式会社は、令和3年4月に大阪府岬町で生まれた、訪問看護ステーションとケアプランセンターです。「うる」はハワイの言葉で木の名前。繁栄と成長を意味していて、地域のみなさんとともに育っていきたいという思いを込めて名付けました。
+            </p>
+            <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-4">
+              看護師・ケアマネジャー・リハビリ職がチームで連携しながら、岬町・阪南市・泉南市エリアで、住み慣れたまちで安心して暮らせるよう、ひとりひとりに真心をこめたケアをお届けしています。
+            </p>
+            <p class="text-brand-700 text-base sm:text-lg leading-relaxed">
+              岬町は「日本の夕陽百選」にも選ばれた、美しい夕陽が見られるまち。そんな住み慣れた地域で、これからも安心して暮らし続けられるように。
+            </p>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-[1fr_1.4fr] gap-6 mb-10">
+          <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-softer">
+            <h3 class="font-bold text-gray-900 text-lg sm:text-xl mb-3">代表からのご挨拶</h3>
+            <p class="text-gray-700 text-base leading-relaxed mb-3">
+              はじめまして、私たちは「いつでも、いつまでも、自分らしく前を向いて」暮らせるよう支えるパートナーです。地域の皆様に信頼され、愛される場所を目指して、スタッフ一同まごころ込めて歩んでまいります。
+            </p>
+            <p class="text-gray-800 font-bold text-sm">代表取締役　木堂 功</p>
+          </div>
+          <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-softer">
+            <h3 class="font-bold text-gray-900 text-lg sm:text-xl mb-3">事業所概要</h3>
+            <ul class="text-gray-700 text-base space-y-1.5">
+              <li><span class="font-bold text-gray-900">会社名：</span>Ulu.co.ltd株式会社</li>
+              <li><span class="font-bold text-gray-900">施設名：</span>{siteName}</li>
+              <li><span class="font-bold text-gray-900">対応エリア：</span>岬町・阪南市・泉南市</li>
+              <li><span class="font-bold text-gray-900">創業：</span>令和3年4月</li>
+              <li><span class="font-bold text-gray-900">代表者：</span>代表取締役　木堂 功</li>
+              <li><span class="font-bold text-gray-900">営業時間：</span>[ここに営業時間を入れる]</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {staffGroups.map((group) => (
+            <div class="bg-white rounded-2xl p-4 shadow-softer">
+              <span class={`inline-block text-xs font-bold px-2.5 py-1 rounded-full mb-2 ${toneClasses[group.tone].chip}`}>{group.role}</span>
+              <p class="text-gray-600 text-sm leading-relaxed">{group.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section id="services" class="scroll-mt-20 bg-white px-4 sm:px-6 py-16 sm:py-24">
+      <div class="max-w-6xl mx-auto">
+        <div class="max-w-2xl mb-12">
+          <span class="inline-block bg-brand-50 text-brand-700 font-bold text-sm px-3 py-1 rounded-full mb-4">SERVICES</span>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">サービス内容</h2>
+          <p class="text-gray-600 text-base sm:text-lg leading-relaxed">対応エリア：岬町・阪南市・泉南市</p>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-6">
+          {services.map((service) => (
+            <div class="relative bg-white border border-gray-100 rounded-2xl p-6 sm:p-8 shadow-softer overflow-hidden">
+              <span class={`absolute top-0 left-0 right-0 h-1.5 ${toneClasses[service.tone].bar}`} aria-hidden="true"></span>
+              <div class={`w-12 h-12 rounded-2xl flex items-center justify-center mb-5 ${toneClasses[service.tone].iconBg}`}>
+                <svg viewBox="0 0 24 24" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={service.icon} />
+              </div>
+              <h3 class="font-bold text-gray-900 text-xl sm:text-2xl mb-1">{service.title}</h3>
+              {service.sub && <p class="text-sm text-gray-500 font-semibold mb-3">{service.sub}</p>}
+              <p class={`inline-block text-sm sm:text-base font-semibold px-3 py-1.5 rounded-full mb-4 ${toneClasses[service.tone].chip}`}>
+                {service.who}
+              </p>
+              <p class="text-brand-700 text-base leading-relaxed mb-4">{service.quote}</p>
+              <p class="text-gray-600 text-base leading-relaxed">{service.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== STAFF ===== -->
+    <section id="staff" class="scroll-mt-20 bg-cream px-4 sm:px-6 py-16 sm:py-24">
+      <div class="max-w-6xl mx-auto">
+        <div class="max-w-2xl mb-12">
+          <span class="inline-block bg-white text-brand-700 font-bold text-sm px-3 py-1 rounded-full mb-4">STAFF</span>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">スタッフ紹介</h2>
+          <p class="text-gray-600 text-base sm:text-lg leading-relaxed">どんなスタッフが対応するのか、顔が見える紹介を心がけています。</p>
+        </div>
+        <!-- スタッフの人数分、下記のカードを複製してください -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {staffMembers.map((member) => (
+            <div class="bg-white rounded-2xl overflow-hidden shadow-softer">
+              <!-- ここにスタッフの顔写真を入れる（正方形で大きめに） -->
+              <div class="aspect-square bg-gradient-to-br from-gray-50 to-white flex items-center justify-center text-gray-300">
+                <svg viewBox="0 0 24 24" class="w-14 h-14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="8" r="3.2" />
+                  <path d="M5 20c1.5-3.5 4.5-5.5 7-5.5s5.5 2 7 5.5" />
+                </svg>
+              </div>
+              <div class="p-5">
+                <p class="font-bold text-gray-900 text-lg">{member.name}</p>
+                <span class={`inline-block text-xs font-bold px-2.5 py-1 rounded-full my-2 ${toneClasses[member.tone].chip}`}>{member.role}</span>
+                <p class="text-gray-600 text-base leading-relaxed">{member.comment}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GUIDE ===== -->
+    <section id="guide" class="scroll-mt-20 bg-white px-4 sm:px-6 py-16 sm:py-24">
+      <div class="max-w-6xl mx-auto">
+        <div class="max-w-2xl mb-12">
+          <span class="inline-block bg-brand-50 text-brand-700 font-bold text-sm px-3 py-1 rounded-full mb-4">GUIDE</span>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">ご利用の流れ</h2>
+          <p class="text-gray-600 text-base sm:text-lg leading-relaxed">お問い合わせからサービス開始まで、5つのステップでご案内します。</p>
+        </div>
+        <!-- 以下は一般的な流れの例です。実際の流れに合わせて内容を調整してください -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {guideSteps.map((item) => (
+            <div class={`relative rounded-2xl p-6 overflow-hidden ${toneClasses[item.tone].section}`}>
+              <span class="pointer-events-none select-none absolute -right-2 -top-4 text-6xl font-black text-white/60" aria-hidden="true">
+                {item.number}
+              </span>
+              <div class={`relative w-11 h-11 rounded-2xl bg-white flex items-center justify-center mb-4 [&_svg]:w-5 [&_svg]:h-5 ${toneClasses[item.tone].chip.split(' ')[1]}`}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={item.icon} />
+              </div>
+              <p class="relative text-gray-500 font-bold text-xs tracking-wide mb-1">STEP {item.number}</p>
+              <h3 class="relative font-bold text-gray-900 text-lg mb-1">{item.title}</h3>
+              <p class="relative text-gray-600 text-base leading-relaxed">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VOICE ===== -->
+    <section id="voice" class="scroll-mt-20 bg-sky-50/70 px-4 sm:px-6 py-16 sm:py-24">
+      <div class="max-w-6xl mx-auto">
+        <div class="max-w-2xl mb-12">
+          <span class="inline-block bg-white text-brand-700 font-bold text-sm px-3 py-1 rounded-full mb-4">VOICE</span>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">ご利用者様の声</h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {testimonials.map((t) => (
+            <div class="bg-white rounded-2xl shadow-softer p-6 sm:p-7">
+              <span class="text-clay-500 text-3xl font-bold leading-none block mb-2" aria-hidden="true">"</span>
+              <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-4">{t.quote}</p>
+              <p class="text-gray-800 text-base font-bold">{t.name}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RECRUIT ===== -->
+    <section id="recruit" class="scroll-mt-20 bg-cream px-4 sm:px-6 py-16 sm:py-24">
+      <div class="max-w-6xl mx-auto">
+        <div class="max-w-2xl mb-12">
+          <span class="inline-block bg-white text-brand-700 font-bold text-sm px-3 py-1 rounded-full mb-4">RECRUIT</span>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">採用情報</h2>
+        </div>
+        <div class="grid lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <!-- ここに募集職種・働き方・魅力などの紹介文を入れる -->
+            <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-6">
+              [ここに募集職種・働き方・当施設で働く魅力などの紹介文を入れる]
+            </p>
+            <!-- ここに求人応募先（採用サイト・フォームなど）のURLを入れる -->
+            <a
+              href="#"
+              class="inline-flex items-center justify-center bg-brand-600 text-white font-bold text-base px-6 py-3.5 rounded-full hover:bg-brand-700 transition-colors"
+            >
+              採用情報・応募はこちら
+            </a>
+          </div>
+          <!-- ここに職場の様子がわかる写真を入れる -->
+          <div class="relative overflow-hidden rounded-2xl border border-gray-100 bg-white aspect-[4/3] flex items-center justify-center text-gray-400 text-sm sm:text-base font-medium px-4 text-center shadow-softer">
+            ここに職場の様子がわかる写真を入れる
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="scroll-mt-20 bg-white px-4 sm:px-6 py-16 sm:py-24">
+      <div class="max-w-6xl mx-auto">
+        <div class="max-w-2xl mb-12">
+          <span class="inline-block bg-brand-50 text-brand-700 font-bold text-sm px-3 py-1 rounded-full mb-4">CONTACT</span>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">お問い合わせ</h2>
+          <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+            サービスに関するご相談、見学のご希望など、お気軽にお問い合わせください。
+          </p>
+        </div>
+
+        <!-- 連絡手段（電話・LINE・フォーム）を色分けして整理 -->
+        <div class="grid sm:grid-cols-3 gap-5 mb-10">
+          <a href="tel:0724841185" class="bg-white rounded-2xl border border-gray-100 shadow-softer p-6 text-center hover:shadow-soft transition-shadow">
+            <div class={`w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 ${toneClasses.green.iconBg}`}>
+              <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6.6 10.2c1.1 2.2 2.9 4 5.1 5.1l1.7-1.7c.2-.2.6-.3.9-.2 1 .3 2 .5 3.1.5.6 0 1 .4 1 1V18c0 .6-.4 1-1 1C10.6 19 5 13.4 5 6.5c0-.6.4-1 1-1h3.1c.6 0 1 .4 1 1 0 1.1.2 2.1.5 3.1.1.3 0 .7-.2.9l-1.8 1.7z" />
+              </svg>
+            </div>
+            <p class="font-bold text-gray-900 mb-1">お電話で相談</p>
+            <p class="text-brand-700 font-bold">072-484-1185</p>
+          </a>
+          <!-- ここにLINE公式アカウントのURLを入れる -->
+          <a href="#" class="bg-white rounded-2xl border border-gray-100 shadow-softer p-6 text-center hover:shadow-soft transition-shadow">
+            <div class={`w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 ${toneClasses.sky.iconBg}`}>
+              <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 5h16v10H8l-4 4V5z" />
+              </svg>
+            </div>
+            <p class="font-bold text-gray-900 mb-1">LINEで相談</p>
+            <p class="text-gray-500 text-sm">お友だち追加してすぐ質問</p>
+          </a>
+          <!-- ここにお問い合わせフォームのURLを入れる -->
+          <a href="#" class="bg-white rounded-2xl border border-gray-100 shadow-softer p-6 text-center hover:shadow-soft transition-shadow">
+            <div class={`w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 ${toneClasses.clay.iconBg}`}>
+              <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="4" y="4" width="16" height="16" rx="2.5" />
+                <path d="M8 10h8M8 14h5" />
+              </svg>
+            </div>
+            <p class="font-bold text-gray-900 mb-1">フォームで相談</p>
+            <p class="text-gray-500 text-sm">じっくり内容をまとめて送信</p>
+          </a>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5 mb-10">
+          <div class="bg-white rounded-2xl border border-gray-100 shadow-softer p-5">
+            <p class="font-bold text-gray-900 text-lg mb-2">訪問看護ステーション</p>
+            <p class="text-gray-600 text-base mb-2 leading-relaxed">
+              〒599-0301<br />大阪府泉南郡岬町淡輪566番地の5
+            </p>
+            <a href="tel:08037787782" class="text-brand-700 text-base font-bold underline underline-offset-2">
+              TEL 080-3778-7782
+            </a>
+          </div>
+          <div class="bg-white rounded-2xl border border-gray-100 shadow-softer p-5">
+            <p class="font-bold text-gray-900 text-lg mb-2">ケアプランセンター<br />（ルルソア相談室）</p>
+            <p class="text-gray-600 text-base mb-2 leading-relaxed">
+              〒590-0526<br />大阪府泉南市男里4丁目7-11-103
+            </p>
+            <a href="tel:0724841185" class="text-brand-700 text-base font-bold underline underline-offset-2">
+              TEL 072-484-1185
+            </a>
+            <p class="text-gray-600 text-base mt-1">FAX 072-484-1186</p>
+          </div>
+        </div>
+
+        <!-- 最後のひと押し：グリーン→ブルーの控えめなグラデーションで安心感を演出（大面積の濃色は使わない） -->
+        <div class="rounded-2xl px-6 py-8 sm:px-10 sm:py-10 text-center bg-gradient-to-br from-brand-600 to-sky-600">
+          <p class="text-white font-bold text-xl sm:text-2xl mb-2">
+            まずは、お気軽に<br class="sm:hidden" />
+            ご相談ください。
+          </p>
+          <p class="text-white/85 text-base sm:text-lg mb-6">
+            「こんなこと聞いてもいいのかな」ということほど、お気軽にどうぞ。
+          </p>
+          <a
+            href="mailto:ulu.co.ltd@outlook.com"
+            class="inline-flex items-center justify-center bg-white text-brand-800 font-bold text-base px-6 py-3.5 rounded-full hover:bg-brand-50 transition-colors"
+          >
+            メールでお問い合わせ
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- フッター -->
+  <footer class="px-4 sm:px-6 py-8 bg-gray-900 text-gray-300 text-center text-sm sm:text-base">
+    <p>&copy; 2026 {siteName}</p>
+    <p class="mt-2 text-xs sm:text-sm text-gray-400">便利屋さんうる（清掃・不用品処分・草刈り等）も運営しております</p>
+    <p class="mt-4 text-xs text-gray-500">
+      このページはデザイン比較用のパターンCです。
+      <a href="/" class="underline hover:text-gray-300">案A（現行）</a>
+      ／
+      <a href="/pattern-b" class="underline hover:text-gray-300">案B（UNC Health方向）</a>
+    </p>
+  </footer>
+</Layout>

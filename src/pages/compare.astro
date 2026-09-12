@@ -1,0 +1,150 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const patterns = [
+  {
+    key: 'a',
+    path: '/',
+    label: '案A（現行デザイン）',
+    tagline: 'Clayの柔らかい図形＋Uluグリーン。既存サイトの現行版。',
+    notes: {
+      first: '緑と葉モチーフでやわらかく、地域の訪問看護らしい親しみがすぐ伝わる。',
+      strong: 'ブランドの葉ロゴ・グリーンが最も強く出ており、Uluらしさが一番わかりやすい。CTA行の見せ方が柔らかい。',
+      weak: '色・装飾が単色系のぶん、情報量が増えたときにセクション同士の見分けがつきにくくなりやすい。',
+      fit: '◎：Uluのブランド資産（葉ロゴ・グリーン）をそのまま活かせる、最も"素のUlu"に近い案。',
+      photo: '写真まわりの縁取り装飾は低opacityでかつ写真の背後のみ。実写真を入れても色が写真に被らずなじみやすい。',
+      ops: '構造がシンプルなので、文章量が増えてもレイアウト崩れの心配が少なく運用しやすい。',
+      cta: 'CTAカードが柔らかい印象で親しみやすいが、色による誘目性はB・Cよりやや控えめ。',
+    },
+  },
+  {
+    key: 'b',
+    path: '/pattern-b',
+    label: '案B（UNC Health方向）',
+    tagline: '端正・ミニマルで医療機関らしい信頼感を最優先にした案。',
+    notes: {
+      first: '白基調で引き締まっており、「きちんとした医療・訪問看護の専門機関」という第一印象が強い。',
+      strong: '情報整理が最もシンプルで揺らぎがなく、長期的に見ても古びにくい。ヘッダーの電話番号・CTAが目立つ。',
+      weak: '色数が少ないぶん、他の2案に比べるとやや事務的・硬い印象になりやすい。',
+      fit: '△〜○：信頼感は出るが、「親しみやすさ・地域密着感」はA・Cよりやや弱まる。',
+      photo: '写真エリアに色装飾を一切乗せていないため、実写真を入れたときに最も違和感なく馴染む＝写真がそのまま主役になる。',
+      ops: '要素数が少なく構造がシンプルなため、3案の中で最も長期運用・追加編集がしやすい。',
+      cta: '連絡手段（電話・LINE・フォーム）が最初から3等分カードで並び、迷わず選べる。ただし色による後押しは弱め。',
+    },
+  },
+  {
+    key: 'c',
+    path: '/pattern-c',
+    label: '案C（Luminis Health方向）',
+    tagline: 'グリーン＋淡いブルー＋テラコッタでカテゴリを色分け。',
+    notes: {
+      first: '色数が最も多く、洗練された「作り込まれたサイト」という第一印象になりやすい。',
+      strong: '色分けにより、サービス・スタッフ職種・連絡手段の違いが一目でわかる。情報量が多いページでも整理して見せやすい。',
+      weak: '色のルール（緑＝看護、青＝ケアプラン、テラコッタ＝リハビリ／フォーム）を今後も一貫させる運用の手間がある。',
+      fit: '○：親しみやすさは保ちつつ洗練度も出せるが、3色運用のルールを維持する意識が必要。',
+      photo: '写真の背後にごく薄いグラデーションの縁取りがあるのみで、写真自体には色を乗せていないため大きな破綻はないが、バッジ類が多い分、写真投入後は差し色の使用量を絞ると馴染みやすい。',
+      ops: '色分けルールの一貫運用が前提のため、担当者が変わる場合はルールの申し送りが必要。要素数はA・Cの中間。',
+      cta: '電話＝緑／LINE＝青／フォーム＝テラコッタと色で選択肢を瞬時に見分けられ、最も"迷わなさ"を演出できる。',
+    },
+  },
+];
+---
+
+<Layout title="デザイン比較（案A / 案B / 案C）" description="うる訪問看護ステーションのトップページデザイン比較用ページ">
+  <header class="border-b border-gray-100 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">デザイン比較：案A / 案B / 案C</h1>
+      <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+        同じ文章・同じ情報量のまま、デザインの方向性だけを変えた3案を並べて比較できます。各プレビューは実際のページをそのまま縮小表示しているので、下の枠内でスクロールして最後まで確認できます。じっくり見る場合は「フルサイズで開く」からどうぞ。
+      </p>
+    </div>
+  </header>
+
+  <main class="px-4 sm:px-6 py-10 sm:py-14">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
+      {patterns.map((p) => (
+        <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden flex flex-col">
+          <div class="p-5 border-b border-gray-100">
+            <h2 class="font-bold text-gray-900 text-lg mb-1">{p.label}</h2>
+            <p class="text-gray-500 text-sm leading-relaxed mb-3">{p.tagline}</p>
+            <a
+              href={p.path}
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center gap-1 text-sm font-semibold text-brand-700 hover:text-brand-800"
+            >
+              フルサイズで開く →
+            </a>
+          </div>
+
+          <div class="p-5 flex flex-col gap-4">
+            <div>
+              <p class="text-xs font-bold text-gray-400 tracking-wide mb-2">PC表示プレビュー（1280px）</p>
+              <div class="frame-pc">
+                <iframe src={p.path} title={`${p.label} PC preview`} loading="lazy"></iframe>
+              </div>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-gray-400 tracking-wide mb-2">スマホ表示プレビュー（375px）</p>
+              <div class="frame-mobile">
+                <iframe src={p.path} title={`${p.label} mobile preview`} loading="lazy"></iframe>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-5 border-t border-gray-100 bg-gray-50/60 text-sm text-gray-700 space-y-3">
+            <div><span class="font-bold text-gray-900">① 第一印象：</span>{p.notes.first}</div>
+            <div><span class="font-bold text-gray-900">② 強み：</span>{p.notes.strong}</div>
+            <div><span class="font-bold text-gray-900">③ 弱み：</span>{p.notes.weak}</div>
+            <div><span class="font-bold text-gray-900">④ Uluとの相性：</span>{p.notes.fit}</div>
+            <div><span class="font-bold text-gray-900">⑤ 写真を入れたときの見え方：</span>{p.notes.photo}</div>
+            <div><span class="font-bold text-gray-900">⑥ 長期運用しやすさ：</span>{p.notes.ops}</div>
+            <div><span class="font-bold text-gray-900">⑦ 問い合わせにつながりやすさ：</span>{p.notes.cta}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </main>
+
+  <footer class="px-4 sm:px-6 py-8 text-center text-xs text-gray-400 border-t border-gray-100">
+    このページはデザイン比較用に作成したものです。既存のトップページ（案A）・案B・案Cはこのページから変更されません。
+  </footer>
+</Layout>
+
+<style>
+  /* PCプレビュー：1280px幅のページを縮小し、上部を切り取って表示（枠内はスクロール可能） */
+  .frame-pc {
+    width: 100%;
+    max-width: 420px;
+    height: 260px;
+    overflow: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #fff;
+  }
+  .frame-pc iframe {
+    width: 1280px;
+    height: 2600px;
+    border: none;
+    transform: scale(0.328);
+    transform-origin: top left;
+  }
+
+  /* スマホプレビュー：375px幅のページを縮小表示（枠内はスクロール可能） */
+  .frame-mobile {
+    width: 100%;
+    max-width: 200px;
+    height: 260px;
+    overflow: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #fff;
+  }
+  .frame-mobile iframe {
+    width: 375px;
+    height: 3200px;
+    border: none;
+    transform: scale(0.4);
+    transform-origin: top left;
+  }
+</style>

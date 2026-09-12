@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//private/tmp/**)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --no-sandbox --screenshot=/tmp/full2.png --window-size=1280,4000 --hide-scrollbars \"http://localhost:4322/#services\")",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --no-sandbox --screenshot=/tmp/full_bottom.png --window-size=1280,4500 --hide-scrollbars http://localhost:4322/)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --no-sandbox --screenshot=/tmp/full_tall.png --window-size=1280,8000 --hide-scrollbars http://localhost:4322/)",
+      "Bash(sips -g pixelHeight -g pixelWidth /tmp/full_tall.png)",
+      "Bash(python3 -c ' *)",
+      "Bash(pip3 install *)",
+      "Bash(lsof -ti:4322 -sTCP:LISTEN)",
+      "Bash(xargs -r kill)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --no-sandbox --screenshot=/tmp/hero_check.png --window-size=1280,1200 --hide-scrollbars http://localhost:4322/)",
+      "Bash(ps -p 18738 -o pid,command)",
+      "Bash(curl -s -o /dev/null -w \"port 4321: %{http_code}\\\\n\" --max-time 3 http://localhost:4321/)",
+      "Bash(curl -s -o /dev/null -w \"port 4322: %{http_code}\\\\n\" --max-time 3 http://localhost:4322/)",
+      "Bash(ps -p 18738 -o pid,etime,command)",
+      "Bash(kill 18738)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" --max-time 3 http://localhost:4321/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" --max-time 3 http://localhost:4322/)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --no-sandbox --screenshot=/tmp/greeting_check.png --window-size=1280,1300 --hide-scrollbars http://localhost:4322/#about)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --no-sandbox --screenshot=/tmp/about_removed.png --window-size=1280,2100 --hide-scrollbars http://localhost:4322/)"
+    ]
+  }
+}
