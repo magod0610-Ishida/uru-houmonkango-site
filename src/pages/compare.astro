@@ -47,21 +47,36 @@ const patterns = [
       cta: '電話＝緑／LINE＝青／フォーム＝テラコッタと色で選択肢を瞬時に見分けられ、最も"迷わなさ"を演出できる。',
     },
   },
+  {
+    key: 'd',
+    path: '/pattern-d',
+    label: '案D（Codex版の雰囲気）',
+    tagline: '全面写真・明朝体の大きな見出し・濃い緑の面。文章は案Aと同じ。',
+    notes: {
+      first: '写真と大きな明朝体の見出しで、落ち着いた「ブランドサイト」のような第一印象。医療・介護らしい重さより、上質さが前に出る。',
+      strong: '濃い緑の面と余白のメリハリが強く、サービス内容がタブで整理される。ご利用の流れの連番STEPも見やすい。',
+      weak: '写真の質に印象が大きく左右される。余白が多いぶんページが長くなり、情報量の多い箇所は読み進める手間がある。',
+      fit: '○：緑のブランドカラーは活かせるが、葉ロゴの親しみ・やわらかさは案Aより控えめ。写真が決まるまでは判断しにくい。',
+      photo: '全面写真のヒーローが主役なので、本人写真の出来が最も効く案。写真が暗いと文字が読みにくくなるため、写真投入後に要調整。',
+      ops: 'タブ・濃い緑の面など部品が多く、文章の追加は案Aより少し手間。写真の差し替えが前提のため、素材づくりが運用の鍵。',
+      cta: 'ヒーロー内に問い合わせ・採用の2つの入口があり、フッター近くに連絡先がまとまる。色で後押しする作りではなく、落ち着いた誘導。',
+    },
+  },
 ];
 ---
 
-<Layout title="デザイン比較（案A / 案B / 案C）" description="うる訪問看護ステーションのトップページデザイン比較用ページ">
+<Layout title="デザイン比較（案A / 案B / 案C / 案D）" description="うる訪問看護ステーションのトップページデザイン比較用ページ">
   <header class="border-b border-gray-100 bg-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
-      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">デザイン比較：案A / 案B / 案C</h1>
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">デザイン比較：案A / 案B / 案C / 案D</h1>
       <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-        同じ文章・同じ情報量のまま、デザインの方向性だけを変えた3案を並べて比較できます。各プレビューは実際のページをそのまま縮小表示しているので、下の枠内でスクロールして最後まで確認できます。じっくり見る場合は「フルサイズで開く」からどうぞ。
+        同じ文章・同じ情報量のまま、デザインの方向性だけを変えた4案を並べて比較できます。各プレビューは実際のページをそのまま縮小表示しているので、下の枠内でスクロールして最後まで確認できます。じっくり見る場合は「フルサイズで開く」からどうぞ。
       </p>
     </div>
   </header>
 
   <main class="px-4 sm:px-6 py-10 sm:py-14">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
+    <div class="max-w-[1400px] mx-auto grid md:grid-cols-2 xl:grid-cols-4 gap-6">
       {patterns.map((p) => (
         <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden flex flex-col">
           <div class="p-5 border-b border-gray-100">
@@ -107,7 +122,7 @@ const patterns = [
   </main>
 
   <footer class="px-4 sm:px-6 py-8 text-center text-xs text-gray-400 border-t border-gray-100">
-    このページはデザイン比較用に作成したものです。既存のトップページ（案A）・案B・案Cはこのページから変更されません。
+    このページはデザイン比較用に作成したものです。既存のトップページ（案A）・案B・案C・案Dはこのページから変更されません。
   </footer>
 </Layout>
 
