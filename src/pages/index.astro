@@ -133,8 +133,9 @@ const testimonials = [
           <span class="inline-block bg-accent-50 text-accent-700 font-bold tracking-wide text-sm sm:text-base mb-5 px-4 py-1.5 rounded-full">
             岬町・阪南市・泉南市エリア対応
           </span>
-          <h1 class="font-black text-3xl sm:text-5xl text-gray-900 leading-relaxed sm:leading-snug mb-6">
-            {siteName}
+          <!-- 改行は、言葉のまとまりの途中で起きないようにする（「ステーショ／ン」のように切れない） -->
+          <h1 class="font-black text-[1.6rem] min-[400px]:text-3xl sm:text-4xl lg:text-[2.6rem] xl:text-5xl text-gray-900 leading-relaxed sm:leading-snug mb-6">
+            <span class="inline-block">うる訪問看護ステーション</span><span class="inline-block">｜ルルソア相談室</span>
           </h1>
           <p class="text-gray-700 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed font-medium">
             岬町・阪南市・泉南市エリアで、ご自宅での介護を頑張っているあなたへ。<br class="hidden sm:block" />
@@ -371,11 +372,95 @@ const testimonials = [
             <p class="text-brand-700 text-base sm:text-lg leading-relaxed mb-4 font-medium">
               「人に寄り添い、心に寄り添うケアを大切にしています。穏やかな時間の中で、その人らしい笑顔や想いを見つめ、もう一度、自分らしく羽ばたける日々を支えます。」
             </p>
-            <!-- ここにケアプランセンターサービスの詳細説明を入れる -->
+            <!-- ケアプランセンター（ルルソア相談室）の説明（代表からいただいた文章を添削したもの） -->
+            <div class="text-gray-700 text-base leading-relaxed font-medium space-y-4">
+              <p>
+                介護が必要になった方やそのご家族が、住み慣れた地域やご自宅で、安心して自分らしい暮らしを続けられるよう、介護保険や生活のことをご相談いただける窓口です。ケアマネジャー（介護支援専門員）が、お一人おひとりに寄り添ってサポートします。
+              </p>
+              <div>
+                <p class="font-bold text-gray-900 mb-1.5">ご相談いただけること</p>
+                <ul class="space-y-1 list-disc list-inside">
+                  <li>介護保険の申請のお手伝い（要介護認定の手続きの代行・お手伝い）</li>
+                  <li>介護サービスのご案内・調整（デイサービス、訪問介護、福祉用具のレンタル、ショートステイなど）</li>
+                  <li>暮らしのお悩み相談（退院後の自宅療養、家族の介護の負担、物忘れの心配など）</li>
+                </ul>
+              </div>
+              <div>
+                <p class="font-bold text-gray-900 mb-1.5">対象の方</p>
+                <ul class="space-y-1 list-disc list-inside">
+                  <li>要介護認定（要介護1〜5）を受けている方、または申請を検討されている方</li>
+                  <li>ご自宅での生活や介護に不安のあるご本人・ご家族</li>
+                </ul>
+                <p class="mt-1.5 text-sm text-gray-600">※「まだ認定を受けていない」「対象になるか分からない」という段階でも、ご相談いただけます。</p>
+              </div>
+              <div>
+                <p class="font-bold text-gray-900 mb-1.5">ご費用</p>
+                <p>ご相談やケアプランの作成にかかる費用は、全額が介護保険から支払われるため、ご利用者様のご負担は原則ありません（無料）です。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ルルソア相談室：ご利用の流れ・想い・特色 -->
+        <div class="mt-10 bg-white border border-gray-100 rounded-2xl shadow-softer p-6 sm:p-10">
+          <p class="text-brand-700 font-bold text-sm tracking-wide mb-1">LURUSOA</p>
+          <h4 class="font-bold text-gray-900 text-xl sm:text-2xl mb-6">ルルソア相談室 ご利用の流れ</h4>
+          <ol class="space-y-5 mb-10">
+            <li class="flex gap-4">
+              <span class="flex-shrink-0 w-9 h-9 rounded-full bg-brand-50 text-brand-700 font-bold flex items-center justify-center">1</span>
+              <div><p class="font-bold text-gray-900">お問い合わせ・ご相談</p><p class="text-gray-700 text-base leading-relaxed font-medium">お電話・メール・LINEなどで、今のお困りごとやご希望をお聞かせください。</p></div>
+            </li>
+            <li class="flex gap-4">
+              <span class="flex-shrink-0 w-9 h-9 rounded-full bg-brand-50 text-brand-700 font-bold flex items-center justify-center">2</span>
+              <div><p class="font-bold text-gray-900">ご自宅への訪問（アセスメント）</p><p class="text-gray-700 text-base leading-relaxed font-medium">ケアマネジャーがご自宅に伺い、心身の状況や生活環境、「これからどんな暮らしを送りたいか」を詳しく伺います。</p></div>
+            </li>
+            <li class="flex gap-4">
+              <span class="flex-shrink-0 w-9 h-9 rounded-full bg-brand-50 text-brand-700 font-bold flex items-center justify-center">3</span>
+              <div><p class="font-bold text-gray-900">ケアプラン（原案）の作成</p><p class="text-gray-700 text-base leading-relaxed font-medium">伺った内容をもとに、どのサービスを、週に何回組み合わせるかなど、ケアプランの原案を作成します。</p></div>
+            </li>
+            <li class="flex gap-4">
+              <span class="flex-shrink-0 w-9 h-9 rounded-full bg-brand-50 text-brand-700 font-bold flex items-center justify-center">4</span>
+              <div><p class="font-bold text-gray-900">サービス担当者会議</p><p class="text-gray-700 text-base leading-relaxed font-medium">ご本人・ご家族、ケアマネジャー、サービス事業所の担当者が集まり（または連携し）、プランの内容を確認します。</p></div>
+            </li>
+            <li class="flex gap-4">
+              <span class="flex-shrink-0 w-9 h-9 rounded-full bg-brand-50 text-brand-700 font-bold flex items-center justify-center">5</span>
+              <div><p class="font-bold text-gray-900">ご同意・サービスの開始</p><p class="text-gray-700 text-base leading-relaxed font-medium">プランの内容にご納得いただいたうえで契約を結び、介護サービスの利用が始まります。</p></div>
+            </li>
+            <li class="flex gap-4">
+              <span class="flex-shrink-0 w-9 h-9 rounded-full bg-brand-50 text-brand-700 font-bold flex items-center justify-center">6</span>
+              <div><p class="font-bold text-gray-900">定期的な訪問と見直し</p><p class="text-gray-700 text-base leading-relaxed font-medium">サービス開始後も、ケアマネジャーが月1回以上ご自宅を訪問します。状況の変化に合わせて、いつでもプランを見直します。</p></div>
+            </li>
+          </ol>
+
+          <div class="bg-cream rounded-2xl p-5 sm:p-6 mb-8">
+            <h5 class="font-bold text-gray-900 text-lg mb-2">私たちの想い</h5>
+            <p class="text-gray-700 text-base leading-relaxed font-medium mb-3">
+              介護は、ある日突然始まることも多く、戸惑いや不安を抱え込んでしまいがちです。
+            </p>
+            <p class="text-gray-700 text-base leading-relaxed font-medium mb-3">
+              私たちは、手続きを進めるだけの窓口ではなく、ご本人には「自分らしく、笑顔でいられる暮らし」を、ご家族には「ゆとりを持って、大切な人を支えられる環境」を、一緒につくっていく伴走者でありたいと考えています。
+            </p>
             <p class="text-gray-700 text-base leading-relaxed font-medium">
-              [ここにケアプランセンターサービスの詳細（ケアプラン作成・相談内容など）を入れる]
+              「こんなことを聞いてもいいのかな」と思わずに、どうぞお気軽にお声がけください。
             </p>
           </div>
+
+          <h5 class="font-bold text-gray-900 text-lg mb-3">ルルソア相談室の特色</h5>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <!-- 「管理者」か別のケアマネかは、代表に確認中。確認が取れるまで「ケアマネジャー」の表記のまま -->
+            <div class="border border-gray-100 rounded-2xl p-5">
+              <p class="font-bold text-brand-700 mb-1.5">社会福祉士の資格を持つケアマネジャーが在籍</p>
+              <p class="text-gray-700 text-base leading-relaxed font-medium">福祉の国家資格である社会福祉士の資格を持つケアマネジャーが在籍しています。介護保険の手続きだけでなく、医療や経済的な不安、地域の福祉制度など、いくつも重なったお悩みにも、広い視野でご相談に応じます。どこに相談してよいか分からないときも、まずはお話しください。</p>
+            </div>
+            <div class="border border-gray-100 rounded-2xl p-5">
+              <p class="font-bold text-brand-700 mb-1.5">「聴くこと」を大切に</p>
+              <p class="text-gray-700 text-base leading-relaxed font-medium">介護が必要になった背景にある不安や、ご家族の葛藤、「これからどう過ごしたいか」という思いに、じっくり耳を傾けます。</p>
+            </div>
+          </div>
+
+          <p class="mt-6 text-gray-700 text-base leading-relaxed font-medium">
+            営業時間：9:00〜17:00（土日祝、8月13日〜15日、12月30日〜1月3日はお休みです）<br />
+            夜間・休日も、必要に応じて連絡できる体制を整えています。
+          </p>
         </div>
         <p class="text-gray-600 text-base mt-6 font-medium">対応エリア：岬町・阪南市・泉南市</p>
       </div>
