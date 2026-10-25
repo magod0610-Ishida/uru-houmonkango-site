@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import Button from '../components/Button.astro';
 import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
-import { lineUrl } from '../data/site';
+import { lineUrl, email } from '../data/site';
 import FooterSns from '../components/FooterSns.astro';
 import RevealOnScroll from '../components/RevealOnScroll.astro';
 import { ph } from '../lib/ph';
@@ -51,7 +51,7 @@ const entryCards = [
     href: '/recruit/',
     sub: 'うるで|働きたい方へ',
     title: '採用情報',
-    lead: '地域で|一緒に働く|仲間を|募集しています。',
+    lead: '「ありがとう」が|ダイレクトに届く、|訪問看護・|相談支援の|お仕事です。',
     bg: 'bg-[#F1E9D2]',
     iconColor: 'text-gray-700',
     more: 'text-gray-800',
@@ -272,7 +272,7 @@ const showVoice = testimonials.some((t) => !t.quote.startsWith('['));
           <Button href="#" variant="onDark">フォームでお問い合わせ</Button>
           */}
           {showLine && <Button href={lineUrl || '#'} variant="onDark">LINEでお問い合わせ</Button>}
-          <Button href="mailto:ulu.co.ltd@outlook.com" variant="onDarkSolid">メールでお問い合わせ</Button>
+          <Button href={`mailto:${email}`} variant="onDarkSolid">メールでお問い合わせ</Button>
         </div>
         <div class="hidden sm:flex flex-col items-center gap-3 mt-10">
           <img src="/images/line-qr.png" alt="LINE公式アカウントの友だち追加QRコード" width="140" height="140" class="w-36 h-36 bg-white p-2 rounded-xl" />
