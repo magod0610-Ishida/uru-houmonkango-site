@@ -1,0 +1,154 @@
+---
+// ルルソア相談室（ケアプランセンター）の詳しいページ
+// 文章は、代表からいただいた文章を添削したもの（2026-10-19）
+import SubPageLayout from '../components/SubPageLayout.astro';
+import { carePlan, closedDays, telHref } from '../data/site';
+import { ph } from '../lib/ph';
+
+const toc = [
+  { href: '#consult', label: 'ご相談内容' },
+  { href: '#target', label: '対象の方・ご費用' },
+  { href: '#flow', label: 'ご利用の流れ' },
+  { href: '#feature', label: '想い・特色' },
+  { href: '#info', label: '営業時間・連絡先' },
+];
+
+const consults = [
+  { title: '介護保険の申請のお手伝い', text: '要介護認定の申請の手続きを、代行・お手伝いします。' },
+  { title: '介護サービスのご案内・調整', text: 'デイサービス、訪問介護、福祉用具のレンタル（車いす・ベッドなど）、ショートステイなど、ご希望や状況に合わせてご紹介し、手配します。' },
+  { title: '暮らしのお悩み相談', text: '「退院後の自宅療養が不安」「家族の介護の負担を減らしたい」「物忘れが増えてきて心配」など、生活全般のお悩みを伺います。' },
+];
+
+const steps = [
+  { title: 'お問い合わせ・ご相談', text: 'お電話・メール・LINEなどで、今のお困りごとやご希望をお聞かせください。' },
+  { title: 'ご自宅への訪問（アセスメント）', text: 'ケアマネジャーがご自宅に伺い、心身の状況や生活環境、「これからどんな暮らしを送りたいか」を詳しく伺います。' },
+  { title: 'ケアプラン（原案）の作成', text: '伺った内容をもとに、どのサービスを、週に何回組み合わせるかなど、ケアプランの原案を作成します。' },
+  { title: 'サービス担当者会議', text: 'ご本人・ご家族、ケアマネジャー、サービス事業所の担当者が集まり（または連携し）、プランの内容を確認します。' },
+  { title: 'ご同意・サービスの開始', text: 'プランの内容にご納得いただいたうえで契約を結び、介護サービスの利用が始まります。' },
+  { title: '定期的な訪問と見直し', text: 'サービス開始後も、ケアマネジャーが月1回以上ご自宅を訪問します。状況の変化に合わせて、いつでもプランを見直します。' },
+];
+
+const check = `<svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>`;
+---
+
+<SubPageLayout
+  title="ルルソア相談室（ケアプランセンター）"
+  description="ルルソア相談室（ケアプランセンター・居宅介護支援）のご案内。ご相談内容、対象の方、ご費用、ご利用の流れをご紹介します。"
+  contact={{ name: carePlan.name, tel: carePlan.tel, hours: carePlan.hours }}
+>
+  <!-- ページの見出し -->
+  <section class="px-4 sm:px-6 pt-10 pb-12 sm:pt-14 sm:pb-16 bg-brand-50">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-sm text-gray-500 mb-6"><a href="/" class="inline-block py-2.5 hover:text-brand-700 underline underline-offset-4">トップ</a>　＞　ルルソア相談室</p>
+      <p class="text-brand-700 font-bold tracking-widest text-xs sm:text-sm mb-3">CARE PLAN CENTER</p>
+      <h1 class="text-[1.75rem] sm:text-4xl font-bold text-gray-900 leading-snug mb-2">ルルソア相談室</h1>
+      <p class="text-gray-600 font-semibold mb-6">ケアプランセンター（居宅介護支援）</p>
+      <p class="text-gray-800 text-base sm:text-lg leading-relaxed font-medium">
+        介護が必要になった方やそのご家族が、住み慣れた地域やご自宅で、安心して自分らしい暮らしを続けられるよう、介護保険や生活のことをご相談いただける窓口です。ケアマネジャー（介護支援専門員）が、お一人おひとりに寄り添ってサポートします。
+      </p>
+      <nav class="mt-8 flex flex-wrap gap-2" aria-label="このページの内容">
+        {toc.map((t) => (
+          <a href={t.href} class="inline-flex items-center px-4 py-2.5 rounded-full bg-white border border-brand-100 text-brand-800 text-sm font-semibold hover:border-brand-300 transition-colors">{t.label}</a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+  <!-- ご相談いただけること -->
+  <section id="consult" class="scroll-mt-20 px-4 sm:px-6 py-14 sm:py-20 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">ご相談いただけること</h2>
+      <p class="text-gray-700 text-base sm:text-lg leading-relaxed font-medium mb-8">「介護が必要かもしれない」「これからの生活が不安」など、小さなことでもお気軽にご相談ください。</p>
+      <div class="space-y-4">
+        {consults.map((c) => (
+          <div class="bg-cream rounded-2xl p-5 sm:p-6">
+            <h3 class="font-bold text-brand-800 text-lg mb-1.5">{c.title}</h3>
+            <p class="text-gray-700 text-base sm:text-lg leading-relaxed font-medium">{c.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 対象の方・ご費用 -->
+  <section id="target" class="scroll-mt-20 px-4 sm:px-6 py-14 sm:py-20 bg-cream">
+    <div class="max-w-3xl mx-auto grid sm:grid-cols-2 gap-5">
+      <div class="bg-white rounded-2xl p-6 shadow-softer">
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">対象の方</h2>
+        <ul class="space-y-3 text-gray-800 text-base sm:text-lg leading-relaxed font-medium">
+          <li class="flex gap-3 items-start"><span class="shrink-0 mt-1 text-brand-600" set:html={check} />要介護認定（要介護1〜5）を受けている方、または申請を検討されている方</li>
+          <li class="flex gap-3 items-start"><span class="shrink-0 mt-1 text-brand-600" set:html={check} />ご自宅での生活や介護に不安のあるご本人・ご家族</li>
+        </ul>
+        <p class="mt-4 text-gray-600 text-sm sm:text-base leading-relaxed">※「まだ認定を受けていない」「対象になるか分からない」という段階でも、ご相談いただけます。まずは一緒に、お話を整理しましょう。</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow-softer">
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">ご費用</h2>
+        <p class="text-gray-800 text-base sm:text-lg leading-relaxed font-medium">
+          ケアマネジャーへのご相談やケアプランの作成にかかる費用は、全額が介護保険から支払われるため、ご利用者様のご負担は<span class="font-bold text-brand-700">原則ありません（無料）</span>です。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ご利用の流れ -->
+  <section id="flow" class="scroll-mt-20 px-4 sm:px-6 py-14 sm:py-20 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">ご利用の流れ</h2>
+      <div class="relative">
+      <div class="absolute left-[1.125rem] top-3 bottom-3 w-px bg-brand-200" aria-hidden="true"></div>
+      <ol class="relative">
+        {steps.map((s, i) => (
+          <li class="relative flex gap-4 pb-7 last:pb-0">
+            <span class="relative z-10 shrink-0 w-9 h-9 rounded-full bg-brand-700 text-white font-bold flex items-center justify-center">{i + 1}</span>
+            <div class="pt-1">
+              <h3 class="font-bold text-gray-900 text-lg mb-1">{s.title}</h3>
+              <p class="text-gray-700 text-base sm:text-lg leading-relaxed font-medium">{s.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 私たちの想い・特色 -->
+  <section id="feature" class="scroll-mt-20 px-4 sm:px-6 py-14 sm:py-20 bg-brand-50">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">私たちの想い</h2>
+      <div class="text-gray-800 text-base sm:text-lg leading-relaxed font-medium space-y-4 mb-12">
+        <p>介護は、ある日突然始まることも多く、戸惑いや不安を抱え込んでしまいがちです。</p>
+        <p>私たちは、手続きを進めるだけの窓口ではなく、ご本人には「自分らしく、笑顔でいられる暮らし」を、ご家族には「ゆとりを持って、大切な人を支えられる環境」を、一緒につくっていく伴走者でありたいと考えています。</p>
+        <p>「こんなことを聞いてもいいのかな」と思わずに、どうぞお気軽にお声がけください。</p>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">ルルソア相談室の特色</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <!-- 「管理者」か別のケアマネかは、代表に確認中。確認が取れるまで「ケアマネジャー」の表記のまま -->
+        <div class="bg-white rounded-2xl p-6 shadow-softer">
+          <h3 class="phrase font-bold text-brand-700 text-lg mb-2" set:html={ph("社会福祉士の|資格を持つ|ケアマネジャーが|在籍")} />
+          <p class="text-gray-700 text-base sm:text-lg leading-relaxed font-medium">福祉の国家資格である社会福祉士の資格を持つケアマネジャーが在籍しています。介護保険の手続きだけでなく、医療や経済的な不安、地域の福祉制度など、いくつも重なったお悩みにも、広い視野でご相談に応じます。どこに相談してよいか分からないときも、まずはお話しください。</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-softer">
+          <h3 class="font-bold text-brand-700 text-lg mb-2">「聴くこと」を大切に</h3>
+          <p class="text-gray-700 text-base sm:text-lg leading-relaxed font-medium">介護が必要になった背景にある不安や、ご家族の葛藤、「これからどう過ごしたいか」という思いに、じっくり耳を傾けます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 営業時間・連絡先 -->
+  <section id="info" class="scroll-mt-20 px-4 sm:px-6 py-14 sm:py-20 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">営業時間・連絡先</h2>
+      <dl class="text-base sm:text-lg divide-y divide-gray-100 border-y border-gray-100">
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">営業時間</dt><dd class="text-gray-700">{carePlan.hours}<br /><span class="text-base">夜間・休日も、必要に応じて連絡できる体制を整えています。</span></dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">定休日</dt><dd class="text-gray-700">{closedDays}</dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">所在地</dt><dd class="text-gray-700">{carePlan.postal} {carePlan.address}</dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">電話・FAX</dt><dd class="text-gray-700"><a href={telHref(carePlan.tel)} class="font-bold text-brand-700 underline underline-offset-4 inline-block py-2.5">TEL {carePlan.tel}</a>　FAX {carePlan.fax}</dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">対応エリア</dt><dd class="text-gray-700">岬町・阪南市・泉南市</dd></div>
+      </dl>
+      <p class="mt-8">
+        <a href="/houmon-kango/" class="phrase inline-block text-brand-700 font-bold underline underline-offset-4 py-2" set:html={ph("ご自宅での看護・リハビリは、|訪問看護ステーションへ →")} />
+      </p>
+    </div>
+  </section>
+</SubPageLayout>

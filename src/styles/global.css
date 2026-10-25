@@ -12,7 +12,26 @@ html {
   h3,
   h4 {
     font-family: '"Zen Maru Gothic"', '"Noto Sans JP"', sans-serif;
+    /* 見出しは、行の長さをそろえる（1文字だけ次の行に残るのを防ぐ） */
+    text-wrap: balance;
   }
+  p,
+  li,
+  dd {
+    /* 最後の行に1〜2文字だけ残る「す。」のような改行を減らす（対応ブラウザのみ） */
+    text-wrap: pretty;
+  }
+}
+
+/* 日本語の改行を、言葉のまとまり（ph() で入れた区切り）でだけ起こす。
+   区切りのない長い文は、はみ出さないように、必要なときだけ途中で折り返す */
+.phrase {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+.phrase .nobr {
+  white-space: nowrap;
 }
 
 /* スクロールで下から静かに現れるアニメーション（JavaScriptが動く時だけ有効） */

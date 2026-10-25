@@ -1,0 +1,127 @@
+---
+// 訪問看護ステーションの詳しいページ（内容は、代表への確認内容を反映したもの）
+import SubPageLayout from '../components/SubPageLayout.astro';
+import { nursing, closedDays, telHref } from '../data/site';
+import { ph } from '../lib/ph';
+
+const toc = [
+  { href: '#cases', label: '主なケース' },
+  { href: '#mitori', label: '看取り' },
+  { href: '#fields', label: '対応実績' },
+  { href: '#rehab', label: 'リハビリ' },
+  { href: '#info', label: '営業時間・連絡先' },
+];
+
+const cases = [
+  '日常的な健康管理・内服管理',
+  '認知症や精神疾患があり、自宅療養に不安のある方',
+  'がん末期など終末期で、ご自宅での緩和ケアを希望される方',
+  '退院直後で、集中的な医療ケアやリハビリが必要な方',
+];
+
+const mitori = [
+  '24時間365日の緊急訪問体制',
+  '医師・ご家族様と密に連携した、身体的な緩和ケア',
+  'ご家族様の心のケアにも寄り添う看取り',
+];
+
+const fields = [
+  { title: '医療依存度の高い方', text: '胃瘻（いろう）、中心静脈栄養（IVH）、慢性閉塞性肺疾患、褥瘡（床ずれ）処置 など' },
+  { title: '難病（特定疾患）', text: 'パーキンソン病、後天性赤芽球癆 の療養支援' },
+];
+
+const check = `<svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>`;
+---
+
+<SubPageLayout
+  title="訪問看護ステーション"
+  description="うる訪問看護ステーションの訪問看護について。対応してきた主なケース、看取りへの対応、対応実績の多い分野、ご自宅でのリハビリをご紹介します。"
+  contact={{ name: nursing.name, tel: nursing.tel, hours: nursing.hours }}
+>
+  <!-- ページの見出し -->
+  <section class="px-4 sm:px-6 pt-10 pb-12 sm:pt-14 sm:pb-16 bg-brand-50">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-sm text-gray-500 mb-6"><a href="/" class="inline-block py-2.5 hover:text-brand-700 underline underline-offset-4">トップ</a>　＞　訪問看護ステーション</p>
+      <p class="text-brand-700 font-bold tracking-widest text-xs sm:text-sm mb-3">VISITING NURSING</p>
+      <h1 class="text-[1.75rem] sm:text-4xl font-bold text-gray-900 leading-snug mb-6">訪問看護ステーション</h1>
+      <p class="text-brand-800 text-lg sm:text-xl leading-relaxed font-medium border-l-4 border-brand-300 pl-4">
+        「私達は、住み慣れた地域で安心して生活できるよう、ご利用者様、ご家族様に寄り添い、真心をこめた看護をお届けします」
+      </p>
+      <nav class="mt-8 flex flex-wrap gap-2" aria-label="このページの内容">
+        {toc.map((t) => (
+          <a href={t.href} class="inline-flex items-center px-4 py-2.5 rounded-full bg-white border border-brand-100 text-brand-800 text-sm font-semibold hover:border-brand-300 transition-colors">{t.label}</a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+  <!-- 対応してきた主なケース -->
+  <section id="cases" class="scroll-mt-20 px-4 sm:px-6 py-14 sm:py-20 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">対応してきた主なケース</h2>
+      <ul class="grid sm:grid-cols-2 gap-4">
+        {cases.map((c) => (
+          <li class="flex gap-3 items-start bg-cream rounded-2xl p-5 text-gray-800 text-base sm:text-lg leading-relaxed font-medium">
+            <span class="shrink-0 mt-1 text-brand-600" set:html={check} />{c}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 看取りへの対応 -->
+  <section id="mitori" class="scroll-mt-20 px-4 sm:px-6 py-14 sm:py-20 bg-cream">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">看取りへの対応</h2>
+      <ul class="space-y-3">
+        {mitori.map((m) => (
+          <li class="flex gap-3 items-start bg-white rounded-2xl p-5 shadow-softer text-gray-800 text-base sm:text-lg leading-relaxed font-medium">
+            <span class="shrink-0 mt-1 text-brand-600" set:html={check} />{m}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 対応実績の多い分野 -->
+  <section id="fields" class="scroll-mt-20 px-4 sm:px-6 py-14 sm:py-20 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">対応実績の多い分野</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {fields.map((f) => (
+          <div class="border border-gray-100 rounded-2xl p-6 shadow-softer">
+            <h3 class="font-bold text-brand-700 text-lg mb-2">{f.title}</h3>
+            <p class="text-gray-700 text-base sm:text-lg leading-relaxed font-medium">{f.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ご自宅でのリハビリ -->
+  <section id="rehab" class="scroll-mt-20 px-4 sm:px-6 py-14 sm:py-20 bg-brand-50">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">ご自宅でのリハビリ</h2>
+      <p class="text-gray-800 text-base sm:text-lg leading-relaxed font-medium">
+        リハビリスタッフもいるので、住み慣れた自宅で生活に特化したリハビリテーションも提供できます。
+      </p>
+    </div>
+  </section>
+
+  <!-- 営業時間・連絡先 -->
+  <section id="info" class="scroll-mt-20 px-4 sm:px-6 py-14 sm:py-20 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">営業時間・連絡先</h2>
+      <dl class="text-base sm:text-lg divide-y divide-gray-100 border-y border-gray-100">
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">営業時間</dt><dd class="text-gray-700">{nursing.hours}</dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">定休日</dt><dd class="text-gray-700">{closedDays}</dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">所在地</dt><dd class="text-gray-700">{nursing.postal} {nursing.address}</dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">電話・FAX</dt><dd class="text-gray-700"><a href={telHref(nursing.tel)} class="font-bold text-brand-700 underline underline-offset-4 inline-block py-2.5">TEL {nursing.tel}</a>　FAX {nursing.fax}</dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">対応エリア</dt><dd class="text-gray-700">岬町・阪南市・泉南市</dd></div>
+      </dl>
+      <p class="mt-8">
+        <a href="/lurusoa/" class="phrase inline-block text-brand-700 font-bold underline underline-offset-4 py-2" set:html={ph("ケアマネジャーへのご相談は、|ルルソア相談室へ →")} />
+      </p>
+    </div>
+  </section>
+</SubPageLayout>

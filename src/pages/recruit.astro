@@ -1,0 +1,84 @@
+---
+// 採用情報のページ（募集職種・働き方・応募の窓口は、代表からの返事待ち。決まったら［ここに…］を差し替える）
+import SubPageLayout from '../components/SubPageLayout.astro';
+import Button from '../components/Button.astro';
+import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import { email } from '../data/site';
+
+const staffGroups = [
+  { role: '看護師', detail: '5名（常勤1・非常勤4）' },
+  { role: '准看護師', detail: '1名（常勤）' },
+  { role: 'ケアマネジャー', detail: '2名（常勤）' },
+  { role: 'リハビリ職', detail: '4名（PT常勤1・非常勤3）' },
+];
+---
+
+<SubPageLayout title="採用情報" description="うる訪問看護ステーション・ルルソア相談室の採用情報です。">
+  <!-- ページの見出し -->
+  <section class="px-4 sm:px-6 pt-10 pb-12 sm:pt-14 sm:pb-16 bg-[#F1E9D2]">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-sm text-gray-600 mb-6"><a href="/" class="inline-block py-2.5 hover:text-brand-700 underline underline-offset-4">トップ</a>　＞　採用情報</p>
+      <p class="text-gray-700 font-bold tracking-widest text-xs sm:text-sm mb-3">RECRUIT</p>
+      <h1 class="text-[1.75rem] sm:text-4xl font-bold text-gray-900 leading-snug mb-6">採用情報</h1>
+      <!-- ここに、採用ページの最初に伝えたい一言を入れる -->
+      <p class="text-gray-800 text-base sm:text-lg leading-relaxed font-medium">
+        [ここに、採用ページの最初に伝えたい一言を入れる]
+      </p>
+    </div>
+  </section>
+
+  <!-- 募集職種・働き方 -->
+  <section class="px-4 sm:px-6 py-14 sm:py-20 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">募集職種・働き方</h2>
+      <!-- 募集が決まったら、職種ごとに増やす -->
+      <dl class="text-base sm:text-lg divide-y divide-gray-100 border-y border-gray-100">
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">募集職種</dt><dd class="text-gray-700">[ここに募集職種を入れる]</dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">雇用形態</dt><dd class="text-gray-700">[常勤・非常勤など]</dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">勤務時間</dt><dd class="text-gray-700">[ここに勤務時間を入れる]</dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">勤務地</dt><dd class="text-gray-700">[訪問看護ステーション／ルルソア相談室]</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- 働く魅力 -->
+  <section class="px-4 sm:px-6 py-14 sm:py-20 bg-cream">
+    <div class="max-w-3xl mx-auto grid sm:grid-cols-2 gap-8 items-center">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">うるで働く魅力</h2>
+        <!-- ここに、働く魅力・職場の雰囲気を入れる -->
+        <p class="text-gray-700 text-base sm:text-lg leading-relaxed font-medium">[ここに、働く魅力・職場の雰囲気を入れる]</p>
+      </div>
+      <!-- ここに職場の様子がわかる写真を入れる -->
+      <PhotoPlaceholder label="ここに職場の様子がわかる写真を入れる" class="aspect-[4/3]" />
+    </div>
+  </section>
+
+  <!-- いまのスタッフ構成 -->
+  <section class="px-4 sm:px-6 py-14 sm:py-20 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">いまのスタッフ構成</h2>
+      <div class="grid grid-cols-2 gap-4">
+        {staffGroups.map((g) => (
+          <div class="border border-gray-100 rounded-2xl p-5 shadow-softer">
+            <p class="font-bold text-gray-900 text-lg mb-1">{g.role}</p>
+            <p class="text-gray-700 text-base leading-relaxed font-medium">{g.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 応募・お問い合わせ -->
+  <section class="px-4 sm:px-6 py-16 sm:py-20 bg-brand-800 text-white">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-2xl sm:text-3xl font-bold mb-4">応募・お問い合わせ</h2>
+      <p class="text-brand-100 text-base sm:text-lg leading-relaxed font-medium mb-8">
+        採用についてのお問い合わせは、こちらからどうぞ。<br class="hidden sm:block" />
+        <!-- ここに応募の窓口（電話・求人サイトなど）が決まったら追記する -->
+        [ここに応募の窓口を入れる]
+      </p>
+      <Button href={`mailto:${email}`} variant="onDarkSolid">メールで問い合わせる</Button>
+    </div>
+  </section>
+</SubPageLayout>

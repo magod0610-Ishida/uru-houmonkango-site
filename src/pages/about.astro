@@ -1,0 +1,121 @@
+---
+// うるについて（事業所の紹介・代表あいさつ・スタッフ・会社概要）。トップには短い紹介だけを置き、詳しくはこのページ
+import SubPageLayout from '../components/SubPageLayout.astro';
+import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import { siteName, nursing, carePlan, closedDays } from '../data/site';
+import { ph } from '../lib/ph';
+
+const toc = [
+  { href: '#greeting', label: '代表あいさつ' },
+  { href: '#staff', label: 'スタッフ紹介' },
+  { href: '#company', label: '会社概要' },
+];
+
+const staffGroups = [
+  { role: '看護師', detail: '5名（常勤1・非常勤4）' },
+  { role: '准看護師', detail: '1名（常勤）' },
+  { role: 'ケアマネジャー', detail: '2名（常勤／主任介護支援専門員1名〈社会福祉士〉・介護支援専門員1名〈介護福祉士〉）' },
+  { role: 'リハビリ職', detail: '4名（PT常勤1・非常勤3）' },
+];
+
+// スタッフの人数分、このカードを増やしてください（掲載はご本人の同意があるものだけ）
+const staffMembers = [
+  { name: '[ここに名前を入れる]', role: '看護師', comment: '[ここにひとことコメントを入れる]' },
+  { name: '[ここに名前を入れる]', role: 'ケアマネジャー', comment: '[ここにひとことコメントを入れる]' },
+  { name: '[ここに名前を入れる]', role: 'リハビリ職', comment: '[ここにひとことコメントを入れる]' },
+];
+---
+
+<SubPageLayout
+  title="うるについて"
+  description="うる訪問看護ステーション・ルルソア相談室（Ulu.co.ltd株式会社）の紹介です。代表あいさつ、スタッフ紹介、会社概要をご覧いただけます。"
+  contact={{ name: nursing.name, tel: nursing.tel, hours: nursing.hours }}
+>
+  <!-- ページの見出し・紹介文 -->
+  <section class="px-4 sm:px-6 pt-10 pb-14 sm:pt-14 sm:pb-20 bg-brand-50">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-sm text-gray-500 mb-6"><a href="/" class="inline-block py-2.5 hover:text-brand-700 underline underline-offset-4">トップ</a>　＞　うるについて</p>
+      <p class="text-brand-700 font-bold tracking-widest text-xs sm:text-sm mb-3">ABOUT</p>
+      <h1 class="phrase text-[1.75rem] sm:text-4xl font-bold text-gray-900 leading-snug mb-8" set:html={ph("はじめまして、|うるです。")} />
+      <div class="grid md:grid-cols-2 gap-8 items-start">
+        <div class="text-gray-800 text-base sm:text-lg leading-loose font-medium space-y-5">
+          <p>Ulu.co.ltd株式会社は、令和3年4月に大阪府岬町で生まれた、訪問看護ステーションとケアプランセンターです。</p>
+          <p>「うる」はハワイの言葉で木の名前。繁栄と成長を意味していて、地域のみなさんとともに育っていきたいという思いを込めて名付けました。</p>
+          <p>看護師・ケアマネジャー・リハビリ職がチームで連携しながら、岬町・阪南市・泉南市エリアで、住み慣れたまちで安心して暮らせるよう、ひとりひとりに真心をこめたケアをお届けしています。</p>
+          <p class="text-brand-700 border-l-4 border-brand-200 pl-4">岬町は「日本の夕陽百選」にも選ばれた、美しい夕陽が見られるまち。そんな住み慣れた地域で、これからも安心して暮らし続けられるように。</p>
+        </div>
+        <!-- ここに事業所やスタッフの写真を入れる -->
+        <PhotoPlaceholder label="ここに事業所・スタッフの写真を入れる" class="aspect-[4/3]" />
+      </div>
+      <nav class="mt-10 flex flex-wrap gap-2" aria-label="このページの内容">
+        {toc.map((t) => (
+          <a href={t.href} class="inline-flex items-center px-4 py-2.5 rounded-full bg-white border border-brand-100 text-brand-800 text-sm font-semibold hover:border-brand-300 transition-colors">{t.label}</a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+  <!-- 代表からのご挨拶 -->
+  <section id="greeting" class="scroll-mt-20 px-4 sm:px-6 py-14 sm:py-20 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">代表からのご挨拶</h2>
+      <div class="bg-cream rounded-2xl p-6 sm:p-8">
+        <p class="text-gray-800 text-base sm:text-lg leading-loose font-medium mb-5">
+          はじめまして、私たちは「いつでも、いつまでも、自分らしく前を向いて」暮らせるよう支えるパートナーです。地域の皆様に信頼され、愛される場所を目指して、スタッフ一同まごころ込めて歩んでまいります。
+        </p>
+        <p class="text-gray-900 font-bold text-base sm:text-lg text-right">代表取締役　木堂 功</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- スタッフ紹介・スタッフ構成 -->
+  <section id="staff" class="scroll-mt-20 px-4 sm:px-6 py-14 sm:py-20 bg-cream">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">スタッフ紹介</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
+        {staffMembers.map((member) => (
+          <div class="bg-white rounded-2xl border border-gray-100 shadow-softer p-6 text-center">
+            <!-- ここにスタッフの写真を入れる -->
+            <div class="w-20 h-20 mx-auto rounded-full border border-brand-100 bg-gradient-to-br from-brand-50 to-white flex items-center justify-center mb-4">
+              <svg viewBox="0 0 24 24" class="w-8 h-8 text-brand-300" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="8" r="3.2" />
+                <path d="M5.5 19.5c.8-3.2 3.4-5.3 6.5-5.3s5.7 2.1 6.5 5.3" />
+              </svg>
+            </div>
+            <p class="font-bold text-gray-900 text-lg">{member.name}</p>
+            <p class="text-brand-700 text-base font-semibold mb-2">{member.role}</p>
+            <p class="text-gray-700 text-base leading-relaxed font-medium">{member.comment}</p>
+          </div>
+        ))}
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">スタッフ構成</h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {staffGroups.map((group) => (
+          <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-softer">
+            <p class="font-bold text-gray-900 text-lg mb-1">{group.role}</p>
+            <p class="text-gray-700 text-base leading-relaxed font-medium">{group.detail}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 会社概要 -->
+  <section id="company" class="scroll-mt-20 px-4 sm:px-6 py-14 sm:py-20 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">会社概要</h2>
+      <dl class="text-base sm:text-lg divide-y divide-gray-100 border-y border-gray-100">
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">会社名</dt><dd class="text-gray-700">Ulu.co.ltd株式会社</dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">施設名</dt><dd class="text-gray-700">{siteName}</dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">代表者</dt><dd class="text-gray-700">代表取締役　木堂 功</dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">創業</dt><dd class="text-gray-700">令和3年4月</dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">対応エリア</dt><dd class="text-gray-700">岬町・阪南市・泉南市</dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">営業時間</dt><dd class="text-gray-700">{nursing.name}　{nursing.hours}<br />{carePlan.name}　{carePlan.hours}</dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">定休日</dt><dd class="text-gray-700">{closedDays}</dd></div>
+        <div class="flex flex-col sm:flex-row gap-1 sm:gap-4 py-4"><dt class="sm:w-28 shrink-0 font-bold text-gray-900">所在地</dt><dd class="text-gray-700">{nursing.name}：{nursing.postal} {nursing.address}<br />{carePlan.name}：{carePlan.postal} {carePlan.address}</dd></div>
+      </dl>
+      <p class="mt-6 text-gray-600 text-base">便利屋さんうる（清掃・不用品処分・草刈り等）も運営しております</p>
+    </div>
+  </section>
+</SubPageLayout>

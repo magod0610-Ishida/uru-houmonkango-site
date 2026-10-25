@@ -1,0 +1,70 @@
+---
+// サービスの詳しいページ・指針のページで共通の、ヘッダー・フッター・お問い合わせ欄
+import Layout from '../layouts/Layout.astro';
+import Button from './Button.astro';
+import FooterSns from './FooterSns.astro';
+import RevealOnScroll from './RevealOnScroll.astro';
+import { ph } from '../lib/ph';
+import { siteName, lineUrl, email, telHref } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  // ページ下のお問い合わせ欄に出す連絡先（指針のページなど、出さない場合は省略）
+  contact?: { name: string; tel: string; hours: string };
+}
+
+const { title, description, contact } = Astro.props;
+---
+
+<Layout title={`${title}｜${siteName}`} description={description}>
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+      <a href="/" class="flex items-center gap-2 min-w-0 font-bold text-brand-800 leading-snug">
+        <img src="/images/logo-leaf.webp" alt="うる ロゴ" class="w-9 h-9 sm:w-10 sm:h-10 object-contain shrink-0" />
+        <span class="hidden sm:inline text-lg">{siteName}</span>
+        <span class="sm:hidden text-base">うる訪問看護</span>
+      </a>
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="/" class="text-sm sm:text-base font-semibold text-gray-600 hover:text-brand-700 whitespace-nowrap py-2">← トップへ</a>
+        <Button href="/#contact" size="sm" fullWidthMobile={false}>お問い合わせ</Button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+
+    {contact && (
+      <section class="px-4 sm:px-6 py-16 sm:py-20 bg-brand-800 text-white">
+        <div class="max-w-3xl mx-auto text-center">
+          <p class="text-brand-200 font-bold tracking-widest text-xs sm:text-sm mb-3">CONTACT</p>
+          <h2 class="phrase text-2xl sm:text-3xl font-bold mb-4" set:html={ph("まずは、|お気軽に|ご相談ください")} />
+          <p class="text-brand-100 text-base sm:text-lg leading-relaxed font-medium mb-8">
+            {contact.name}（受付 {contact.hours}）
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button href={telHref(contact.tel)} variant="onDarkSolid">電話する　{contact.tel}</Button>
+            <Button href={lineUrl} variant="onDark">LINEで相談する</Button>
+            <Button href={`mailto:${email}`} variant="onDark">メールで相談する</Button>
+          </div>
+        </div>
+      </section>
+    )}
+  </main>
+
+  <footer class="px-4 sm:px-6 py-8 bg-gray-900 text-gray-300 text-center text-sm sm:text-base font-medium">
+    <FooterSns />
+    <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-4" aria-label="フッター">
+      <a href="/" class="inline-block py-2.5 underline underline-offset-4 hover:text-white">トップ</a>
+      <a href="/about/" class="inline-block py-2.5 underline underline-offset-4 hover:text-white">うるについて</a>
+      <a href="/houmon-kango/" class="inline-block py-2.5 underline underline-offset-4 hover:text-white">訪問看護ステーション</a>
+      <a href="/lurusoa/" class="inline-block py-2.5 underline underline-offset-4 hover:text-white">ルルソア相談室</a>
+      <a href="/recruit/" class="inline-block py-2.5 underline underline-offset-4 hover:text-white">採用情報</a>
+      <a href="/abuse-prevention/" class="inline-block py-2.5 underline underline-offset-4 hover:text-white">利用者への虐待防止に関する指針</a>
+    </nav>
+    <p>&copy; 2026 {siteName}</p>
+  </footer>
+</Layout>
+
+<RevealOnScroll />

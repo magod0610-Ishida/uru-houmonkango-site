@@ -1,23 +1,11 @@
 ---
-import Layout from '../layouts/Layout.astro';
-
 // 利用者への虐待防止に関する指針（事業所から受け取った文面を、そのまま掲載）。
 // 文面を変えるときは、事業所（代表・管理者）の確認を取ってから直すこと
-const siteName = 'うる訪問看護ステーション｜ルルソア相談室';
+import SubPageLayout from '../components/SubPageLayout.astro';
 ---
 
-<Layout title={`利用者への虐待防止に関する指針｜${siteName}`} description="うる訪問看護ステーション・ルルソア相談室の、利用者への虐待防止に関する指針です。">
-  <header class="border-b border-gray-100 bg-white">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
-      <a href="/" class="flex items-center gap-2 font-bold text-brand-800">
-        <img src="/images/logo-leaf.webp" alt="うる ロゴ" class="w-9 h-9 object-contain" />
-        <span>{siteName}</span>
-      </a>
-      <a href="/" class="text-sm font-semibold text-brand-700 hover:text-brand-800 whitespace-nowrap">← トップへ戻る</a>
-    </div>
-  </header>
-
-  <main class="px-4 sm:px-6 py-12 sm:py-16">
+<SubPageLayout title="利用者への虐待防止に関する指針" description="うる訪問看護ステーション・ルルソア相談室の、利用者への虐待防止に関する指針です。">
+  <section class="px-4 sm:px-6 py-12 sm:py-16">
     <article class="max-w-3xl mx-auto text-gray-800 text-base sm:text-lg leading-loose">
       <p class="text-brand-700 font-bold tracking-wide text-sm mb-3">POLICY</p>
       <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 leading-relaxed mb-2">利用者への虐待防止に関する指針</h1>
@@ -86,10 +74,5 @@ const siteName = 'うる訪問看護ステーション｜ルルソア相談室';
       <p class="my-3">本指針は、令和6年4月1日より施行する。</p>
       <p class="my-3">令和7年12月1日 一部改正</p>
     </article>
-  </main>
-
-  <footer class="px-4 sm:px-6 py-8 bg-gray-900 text-gray-300 text-center text-sm sm:text-base">
-    <p><a href="/" class="underline hover:text-white">トップへ戻る</a></p>
-    <p class="mt-2">&copy; 2026 {siteName}</p>
-  </footer>
-</Layout>
+  </section>
+</SubPageLayout>
