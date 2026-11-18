@@ -1,7 +1,7 @@
 ---
 // うるについて（事業所の紹介・代表あいさつ・スタッフ・会社概要）。トップには短い紹介だけを置き、詳しくはこのページ
 import SubPageLayout from '../components/SubPageLayout.astro';
-import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import StaffGroupPhoto from '../components/StaffGroupPhoto.astro';
 import { siteName, nursing, carePlan, closedDays } from '../data/site';
 import { ph } from '../lib/ph';
 
@@ -44,8 +44,8 @@ const staffMembers = [
           <p>看護師・ケアマネジャー・リハビリ職がチームで連携しながら、岬町・阪南市・泉南市エリアで、住み慣れたまちで安心して暮らせるよう、ひとりひとりに真心をこめたケアをお届けしています。</p>
           <p class="text-brand-700 border-l-4 border-brand-200 pl-4">岬町は「日本の夕陽百選」にも選ばれた、美しい夕陽が見られるまち。そんな住み慣れた地域で、これからも安心して暮らし続けられるように。</p>
         </div>
-        <!-- ここに事業所やスタッフの写真を入れる -->
-        <PhotoPlaceholder label="ここに事業所・スタッフの写真を入れる" class="aspect-[4/3]" />
+        <!-- スタッフの集合写真（仮・AI生成のイメージ画像。本物に差し替えるときは StaffGroupPhoto.astro を参照） -->
+        <StaffGroupPhoto />
       </div>
       <nav class="mt-10 flex flex-wrap gap-2" aria-label="このページの内容">
         {toc.map((t) => (

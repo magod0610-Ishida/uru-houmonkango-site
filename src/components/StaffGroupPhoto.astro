@@ -1,0 +1,22 @@
+---
+// スタッフの集合写真（仮）。
+// 今はAIで作った仮の画像。本物のスタッフ写真に差し替えるときは、
+// public/images/staff-group-image.webp を入れ替える（トップと「うるについて」の2か所に出る）。
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<figure class={className}>
+  <img
+    src="/images/staff-group-image.webp"
+    alt="スタッフが笑顔で並んでいるイメージ写真"
+    width="1448"
+    height="1086"
+    loading="lazy"
+    decoding="async"
+    class="w-full h-auto aspect-[4/3] object-cover rounded-lg border border-brand-100"
+  />
+</figure>

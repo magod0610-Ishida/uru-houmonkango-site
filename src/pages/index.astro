@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import Button from '../components/Button.astro';
-import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import StaffGroupPhoto from '../components/StaffGroupPhoto.astro';
 import { lineUrl, email } from '../data/site';
 import FooterSns from '../components/FooterSns.astro';
 import RevealOnScroll from '../components/RevealOnScroll.astro';
@@ -208,8 +208,8 @@ const showVoice = testimonials.some((t) => !t.quote.startsWith('['));
             </ul>
             <Button href="/about/" variant="secondary" fullWidthMobile={false}>うるについて詳しく →</Button>
           </div>
-          <!-- ここに事業所やスタッフの写真を入れる -->
-          <PhotoPlaceholder label="ここに事業所・スタッフの写真を入れる" class="aspect-[4/3]" />
+          <!-- スタッフの集合写真（仮・AI生成のイメージ画像。本物に差し替えるときは StaffGroupPhoto.astro を参照） -->
+          <StaffGroupPhoto />
         </div>
       </div>
     </section>
