@@ -7,7 +7,7 @@ import { ph } from '../lib/ph';
 
 const toc = [
   { href: '#greeting', label: '代表あいさつ' },
-  { href: '#staff', label: 'スタッフ紹介' },
+  { href: '#staff', label: 'スタッフ構成' },
   { href: '#company', label: '会社概要' },
 ];
 
@@ -24,11 +24,13 @@ const staffMembers = [
   { name: '[ここに名前を入れる]', role: 'ケアマネジャー', comment: '[ここにひとことコメントを入れる]' },
   { name: '[ここに名前を入れる]', role: 'リハビリ職', comment: '[ここにひとことコメントを入れる]' },
 ];
+// 名前などが［ここに…］のままのカードは、公開ページには出さない（決まったら、［ ］を消して中身を入れると表示される）
+const filledStaffMembers = staffMembers.filter((m) => !m.name.startsWith('[') && !m.comment.startsWith('['));
 ---
 
 <SubPageLayout
   title="うるについて"
-  description="うる訪問看護ステーション・ルルソア相談室（Ulu.co.ltd株式会社）の紹介です。代表あいさつ、スタッフ紹介、会社概要をご覧いただけます。"
+  description="うる訪問看護ステーション・ルルソア相談室（Ulu.co.ltd株式会社）の紹介です。代表あいさつ、スタッフ構成、会社概要をご覧いただけます。"
   contact={{ name: nursing.name, tel: nursing.tel, hours: nursing.hours }}
 >
   <!-- ページの見出し・紹介文 -->
@@ -71,9 +73,11 @@ const staffMembers = [
   <!-- スタッフ紹介・スタッフ構成 -->
   <section id="staff" class="scroll-mt-20 px-4 sm:px-6 py-14 sm:py-20 bg-cream">
     <div class="max-w-4xl mx-auto">
+      {filledStaffMembers.length > 0 && (
+      <>
       <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">スタッフ紹介</h2>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
-        {staffMembers.map((member) => (
+        {filledStaffMembers.map((member) => (
           <div class="bg-white rounded-2xl border border-gray-100 shadow-softer p-6 text-center">
             <!-- ここにスタッフの写真を入れる -->
             <div class="w-20 h-20 mx-auto rounded-full border border-brand-100 bg-gradient-to-br from-brand-50 to-white flex items-center justify-center mb-4">
@@ -88,6 +92,8 @@ const staffMembers = [
           </div>
         ))}
       </div>
+      </>
+      )}
 
       <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">スタッフ構成</h2>
       <div class="grid sm:grid-cols-2 gap-4">
