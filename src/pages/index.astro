@@ -67,11 +67,13 @@ const aboutFacts = [
   { label: 'チーム', value: '看護師・ケアマネジャー・リハビリ職' },
 ];
 
-// 実際にいただいた感想が決まったら、このカードを入れ替えてください
+// 実際にいただいた感想（2026-11-22 のアンケートより。公開への同意は確認済み。個人が特定されない形に整えている）
+const voiceName = 'ご利用者様・ご家族様';
 const testimonials = [
-  { quote: '[ここにご家族・ご利用者様からいただいた感想を入れる]', name: '[ここにお名前・ご関係を入れる]' },
-  { quote: '[ここにご家族・ご利用者様からいただいた感想を入れる]', name: '[ここにお名前・ご関係を入れる]' },
-  { quote: '[ここにご家族・ご利用者様からいただいた感想を入れる]', name: '[ここにお名前・ご関係を入れる]' },
+  { quote: '不安感が無く、安心して介護をして頂きました。体も頭もきれいにして、病人が気持ちよく過ごしていました。', name: voiceName },
+  { quote: 'いつもよくしていただいて、感謝しております。いろいろとお話もよくしていただき、聞いてくださって感謝しています。', name: voiceName },
+  { quote: '家族の現在の状態を教えてもらえる。散歩などに連れて行ってもらえる。看護師さんが優しい。', name: voiceName },
+  { quote: '困った事を相談出来てよかったと思います。ありがとうございました。', name: voiceName },
 ];
 // 仮の文（[ここに…]）のままの間は、お客様の声の欄をトップに出さない
 const showVoice = testimonials.some((t) => !t.quote.startsWith('['));
@@ -220,7 +222,7 @@ const showVoice = testimonials.some((t) => !t.quote.startsWith('['));
       <div class="pointer-events-none select-none absolute -left-16 -bottom-16 w-72 h-72 rounded-full bg-brand-300/20 blur-3xl" aria-hidden="true"></div>
       <div class="relative max-w-5xl mx-auto">
         <SectionHeading eyebrow="VOICE" title="ご利用者様の声" />
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class={`grid sm:grid-cols-2 ${testimonials.length % 3 === 0 ? 'lg:grid-cols-3' : ''} gap-6`}>
           {testimonials.map((t) => (
             <div class="bg-white rounded-2xl shadow-softer p-6 sm:p-7 hover:shadow-soft hover:-translate-y-0.5 transition-all">
               <span class="text-accent-500 text-3xl font-bold leading-none block mb-2" aria-hidden="true">"</span>
