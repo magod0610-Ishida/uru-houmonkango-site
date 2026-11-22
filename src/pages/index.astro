@@ -75,6 +75,49 @@ const testimonials = [
   { quote: '家族の現在の状態を教えてもらえる。散歩などに連れて行ってもらえる。看護師さんが優しい。', name: voiceName },
   { quote: '困った事を相談出来てよかったと思います。ありがとうございました。', name: voiceName },
 ];
+// 感想カードの右下に出す、イラストの人物アイコン（コードで描いたオリジナル。実在の人物ではない）
+// 種類を入れ替えたいときは、kind を 'man-old'（眼鏡の男性）／'woman-old'（白髪の女性）／'woman'／'man' から選ぶ
+const avatars = [
+  { kind: 'woman-old', bg: '#FBF3C4', clothes: '#FCEFA0' },
+  { kind: 'man-old', bg: '#DDF3E6', clothes: '#BFE3CC' },
+  { kind: 'woman', bg: '#FCE6D0', clothes: '#F8CFA8' },
+  { kind: 'man', bg: '#DCE9F5', clothes: '#BDD4EC' },
+];
+const ink = '#3b3b3b';
+const stroke = `stroke="${ink}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"`;
+function avatarSvg(i: number) {
+  const a = avatars[i % avatars.length];
+  const old = a.kind.endsWith('-old');
+  const hair = old ? '#A9A9AB' : '#4A4148';
+  const isWoman = a.kind.startsWith('woman');
+  const hairBack = isWoman ? `<path d="M26 60 C20 26 38 14 50 14 C62 14 80 26 74 60 Z" fill="${hair}" ${stroke}/>` : '';
+  const hairTop =
+    a.kind === 'man-old'
+      ? `<path d="M32 38 C32 22 68 22 68 38 C62 31 38 31 32 38 Z" fill="${hair}" ${stroke}/>`
+      : a.kind === 'man'
+        ? `<path d="M31 41 C28 17 72 17 69 41 C64 30 36 30 31 41 Z" fill="${hair}" ${stroke}/>`
+        : `<path d="M32 40 C36 24 64 24 68 40 C60 31 40 31 32 40 Z" fill="${hair}" ${stroke}/>`;
+  const glasses =
+    a.kind === 'man-old'
+      ? `<rect x="36.5" y="40" width="11" height="8.5" rx="3.2" fill="none" ${stroke}/><rect x="52.5" y="40" width="11" height="8.5" rx="3.2" fill="none" ${stroke}/><path d="M47.5 43.5 H52.5" fill="none" ${stroke}/>`
+      : '';
+  const wrinkles = old ? `<path d="M41.5 54.5 q-1.6 1.6 -0.8 3.4 M58.5 54.5 q1.6 1.6 0.8 3.4" fill="none" stroke="${ink}" stroke-width="1.6" stroke-linecap="round"/>` : '';
+  const collar = a.kind === 'man-old' ? `<path d="M43 72 L50 82 L57 72 M50 82 V98" fill="none" ${stroke}/>` : '';
+  return `<svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true" focusable="false">
+    <rect width="100" height="100" fill="${a.bg}"/>
+    ${hairBack}
+    <path d="M42 56 H58 V76 H42 Z" fill="#fff"/><path d="M42 56 V74 M58 56 V74" fill="none" ${stroke}/>
+    <path d="M6 104 C8 82 28 72 50 72 C72 72 92 82 94 104 Z" fill="${a.clothes}" ${stroke}/>
+    ${collar}
+    <circle cx="32.5" cy="45" r="3.4" fill="#fff" ${stroke}/><circle cx="67.5" cy="45" r="3.4" fill="#fff" ${stroke}/>
+    <ellipse cx="50" cy="43" rx="18" ry="21" fill="#fff" ${stroke}/>
+    ${hairTop}
+    <circle cx="43" cy="44" r="1.8" fill="${ink}"/><circle cx="57" cy="44" r="1.8" fill="${ink}"/>
+    ${glasses}
+    <path d="M45 53.5 Q50 57.5 55 53.5" fill="none" ${stroke}/>
+    ${wrinkles}
+  </svg>`;
+}
 // 仮の文（[ここに…]）のままの間は、お客様の声の欄をトップに出さない
 const showVoice = testimonials.some((t) => !t.quote.startsWith('['));
 ---
@@ -223,11 +266,13 @@ const showVoice = testimonials.some((t) => !t.quote.startsWith('['));
       <div class="relative max-w-5xl mx-auto">
         <SectionHeading eyebrow="VOICE" title="ご利用者様の声" />
         <div class={`grid sm:grid-cols-2 ${testimonials.length % 3 === 0 ? 'lg:grid-cols-3' : ''} gap-6`}>
-          {testimonials.map((t) => (
-            <div class="bg-white rounded-2xl shadow-softer p-6 sm:p-7 hover:shadow-soft hover:-translate-y-0.5 transition-all">
-              <span class="text-accent-500 text-3xl font-bold leading-none block mb-2" aria-hidden="true">"</span>
-              <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-4 font-medium">{t.quote}</p>
-              <p class="text-gray-800 text-base font-bold">{t.name}</p>
+          {testimonials.map((t, i) => (
+            <div class="bg-white rounded-2xl shadow-softer p-6 sm:p-7 hover:shadow-soft hover:-translate-y-0.5 transition-all flex flex-col">
+              <p class="text-gray-700 text-base sm:text-lg leading-relaxed mb-5 font-medium">{t.quote}</p>
+              <div class="mt-auto flex items-end justify-between gap-3">
+                <p class="text-gray-800 text-base font-bold" set:html={t.name.split('・').map((w, k, a) => `<span class="inline-block">${w}${k < a.length - 1 ? '・' : ''}</span>`).join('')} />
+                <div class="w-16 h-16 shrink-0 rounded-full overflow-hidden" set:html={avatarSvg(i)} />
+              </div>
             </div>
           ))}
         </div>
